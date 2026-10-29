@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>10/12〜10/17 セミリタイアCV最大化 まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* layout: one long report column, two ad sections stacked; each opens with figures, then creatives, then tables, then 考察 */
+:root{
+  --bg:#f5f6f3; --paper:#ffffff; --ink:#1d2320; --muted:#5e6862; --line:#d9ddd6;
+  --x:#e7c94a; --x-ink:#5a4a00; --meta:#3b5bab; --meta-soft:#e3e9f7;
+  --good:#2f7d4f; --bad:#b4332b; --bad-soft:#f7e3e1; --warn:#9a6a00;
+  --d0:#a9b9e0; --d1:#5f7cc4; --d2:#26407f;
+  --f-display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,"SFMono-Regular",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141816; --paper:#1c211f; --ink:#e6ebe7; --muted:#9aa49e; --line:#333b37;
+  --x:#d8bb3c; --x-ink:#f1df8c; --meta:#8ea6e6; --meta-soft:#232c42;
+  --good:#6cc28f; --bad:#ef7d74; --bad-soft:#3a2321; --warn:#e0b44a;
+  --d0:#3f5285; --d1:#6f8bd3; --d2:#b5c6f2; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141816; --paper:#1c211f; --ink:#e6ebe7; --muted:#9aa49e; --line:#333b37;
+  --x:#d8bb3c; --x-ink:#f1df8c; --meta:#8ea6e6; --meta-soft:#232c42;
+  --good:#6cc28f; --bad:#ef7d74; --bad-soft:#3a2321; --warn:#e0b44a;
+  --d0:#3f5285; --d1:#6f8bd3; --d2:#b5c6f2; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.75;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.35;margin:0}
+h1{font-size:clamp(24px,3.4vw,34px);font-weight:800}
+h2{font-size:clamp(20px,2.6vw,26px);font-weight:800}
+h3{font-size:17px;font-weight:600;margin-top:4px}
+p{margin:0;max-width:68ch}
+.num,td,.tile b{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+header.top{display:grid;gap:10px;padding-bottom:20px;border-bottom:2px solid var(--ink)}
+.meta-line{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--muted);font-size:13px}
+.lead{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:22px}
+.lead > div{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px 18px;min-width:0}
+.lead .lab{font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.lead p{margin-top:6px}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:2px;font-family:var(--f-body)}
+.chip.ok{color:var(--good);border:1px solid var(--good)}
+.chip.ng{color:var(--bad);background:var(--bad-soft);border:1px solid var(--bad)}
+.chip.wait{color:var(--warn);border:1px dashed var(--warn)}
+section.ad{margin-top:48px;display:grid;gap:22px}
+.sec-head{display:grid;gap:6px;padding-left:14px;border-left:6px solid var(--accent)}
+.sec-x{--accent:var(--x)} .sec-m{--accent:var(--meta)}
+.sec-head .sub{color:var(--muted);font-size:13px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tile{background:var(--paper);padding:12px 14px;display:grid;gap:2px;min-width:0}
+.tile span{font-size:12px;color:var(--muted)}
+.tile b{font-size:21px;font-weight:600}
+.tile small{font-size:11.5px;color:var(--muted)}
+.creatives-x{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.xcard{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px;display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:start;min-width:0}
+.xcard img{width:150px;height:150px;border-radius:4px;display:block}
+.xcard .t{font-weight:700}
+.xcard .copy{font-size:13px;color:var(--muted);margin-top:4px}
+.xcard dl{display:grid;grid-template-columns:auto 1fr;gap:0 10px;margin:8px 0 0;font-size:13px}
+.xcard dt{color:var(--muted)} .xcard dd{margin:0;font-family:var(--f-num)}
+@media (max-width:520px){.xcard{grid-template-columns:1fr}.xcard img{width:100%;height:auto}}
+.creatives-m{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.creatives-m{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.mcard{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:grid;min-width:0}
+.mcard img{width:100%;height:auto;display:block;border-bottom:1px solid var(--line);background:#fff}
+.mcard figcaption{padding:10px 12px;display:grid;gap:2px;font-size:12.5px}
+.mcard .mname{font-weight:700;font-size:13.5px}
+.mcard .mstat b{font-family:var(--f-num)}
+.mcard .mrank{color:var(--muted)}
+.mcard.best{border-color:var(--meta);box-shadow:0 0 0 1px var(--meta)}
+.mcard.best .mrank{color:var(--meta);font-weight:700}
+.tbl{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:640px}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+thead th{font-family:var(--f-body);font-size:12px;color:var(--muted);font-weight:700;background:var(--bg)}
+tbody th{text-align:left;font-weight:500}
+tr.partial{color:var(--muted)}
+tr.total th,tr.total td{font-weight:700;border-top:2px solid var(--ink)}
+td.sum{background:var(--meta-soft)}
+.tag{font-size:10.5px;border:1px solid var(--muted);border-radius:3px;padding:0 4px;margin-left:6px;font-family:var(--f-body)}
+.split{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.bar{display:flex;width:110px;height:10px;border-radius:2px;overflow:hidden;background:var(--line)}
+.b2{background:var(--x)} .b1{background:var(--muted)}
+.sv{font-size:11.5px;color:var(--muted);min-width:70px;text-align:right}
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.chart{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:12px 12px 8px}
+.chart svg{width:100%;height:auto;display:block}
+.grid{stroke:var(--line);stroke-width:1}
+.ax{fill:var(--muted);font-size:11px;font-family:var(--f-body)}
+.ax.sm{font-size:10px}
+.val{fill:var(--ink);font-size:11px;font-family:var(--f-num)}
+.val.sm{font-size:9.5px}
+.cpcbar{fill:var(--x)} .cpcbar.partial{fill:none;stroke:var(--x);stroke-width:1.5;stroke-dasharray:3 2}
+.ctrline{fill:none;stroke:var(--ink);stroke-width:2} .ctrline.dash{stroke-dasharray:4 3}
+.ctrdot{fill:var(--ink)} .ctrdot.hollow{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}
+.ctr-ax{fill:var(--ink)}
+.d0{fill:var(--d0)} .d1{fill:var(--d1)} .d2{fill:var(--d2)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.two > *{min-width:0}
+.stack{display:grid;gap:22px}.stack .chart{max-width:760px}
+.tbl.compact table{font-size:12px}.tbl.compact th,.tbl.compact td{padding:6px 8px}
+.funnel{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:grid;gap:2px}
+.step span{font-size:12px;color:var(--muted)} .step b{font-family:var(--f-num);font-size:19px}
+.step.choke{border-color:var(--bad);background:var(--bad-soft)}
+.step small{font-size:11.5px;color:var(--muted)}
+.consider{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:18px 20px;display:grid;gap:14px}
+.consider ol{margin:0;padding-left:1.4em;display:grid;gap:12px;max-width:72ch}
+.consider li::marker{font-family:var(--f-num);font-weight:600;color:var(--accent)}
+.consider .src{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.ask{border:2px solid var(--ink);border-radius:6px;padding:18px 20px;background:var(--paper);display:grid;gap:10px;margin-top:48px}
+.ask ol{margin:0;padding-left:1.4em;display:grid;gap:8px;max-width:72ch}
+.note{font-size:12px;color:var(--muted)}
+footer{margin-top:40px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;display:grid;gap:4px}
+.lpbox{margin-top:16px;background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--meta);border-radius:6px;padding:14px 18px}
+.lpbox .lab{font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.lpbox ol{margin:6px 0 0;padding-left:1.4em;display:grid;gap:8px}
+.lpbox a{color:var(--meta);word-break:break-all}
+.note{font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p style="margin:0 0 14px"><a href="./" style="color:var(--meta);font-size:13px">← レポート一覧に戻る</a></p>
+<header class="top">
+  <div class="meta-line"><span>2026年10月30日（金）作成</span><span>報告 加藤朋香</span><span>数値はスプレッドシート「コンセプトポテンシャル Meta広告数値」の確定値</span></div>
+  <h1>セミリタイア CV最大化 10/12〜10/17 まとめ</h1>
+  <p>キャンペーン「コンセプトポテンシャル_セミリタイア_CV最大化_売上_20261010」と、10/15から切り替えた「セミリタイア_CV最大化_売上_20261015_5万円一本化」の、配信開始から停止までの6日間です。LINE登録はMetaの「登録完了」の数です。</p>
+</header>
+<div class="lead">
+  <div>
+    <div class="lab">結果</div>
+    <p>6日間で¥223,317を消化し、LINE登録は83件（Meta）、リスト単価は¥2,691でした。UTAGEに実際に入った人数は90人で、こちらで割ると¥2,481です。</p>
+  </div>
+  <div>
+    <div class="lab">変化</div>
+    <p>日予算¥25,000の広告セット2つ（10/12〜10/15）はリスト単価¥2,226でした。10/15に日予算¥50,000の広告セット1つにまとめたあとは¥3,979に上がり、10/17に止めました。</p>
+  </div>
+</div>
+<div class="lpbox">
+  <div class="lab">この期間のLP</div>
+  <ol>
+    <li><b>UTAGE型LP</b>（10/13 11時台以降は、すべての広告のリンク先）<br><a href="https://utage-system.com/p/IOpCMW0OSHA6" target="_blank" rel="noopener">https://utage-system.com/p/IOpCMW0OSHA6</a></li>
+    <li><b>既存LP（resort）</b>（「既存LP」の広告セットの、10/12 21:14〜10/13 11時台のリンク先）<br><a href="https://kawaranai-motion-demo.vercel.app/resort/" target="_blank" rel="noopener">https://kawaranai-motion-demo.vercel.app/resort/</a></li>
+  </ol>
+</div>
+<section class="ad sec-m">
+  <div class="sec-head"><h2>1. 数字</h2><div class="sub">6日間の合計</div></div>
+  <div class="tiles">
+    <div class="tile"><span>消化金額</span><b>¥223,317</b><small>10/12〜10/17</small></div>
+    <div class="tile"><span>LINE登録（Meta）</span><b>83</b><small>リスト単価 ¥2,691</small></div>
+    <div class="tile"><span>LINE登録（UTAGE）</span><b>90</b><small>リスト単価 ¥2,481</small></div>
+    <div class="tile"><span>リンククリック</span><b>3,447</b><small>クリック率 6.4%</small></div>
+    <div class="tile"><span>受け取りページを開いた人</span><b>124</b><small>UTAGEのアクセス（UU）</small></div>
+    <div class="tile"><span>動画を申込ボタンの位置まで見た人</span><b>53</b><small>受け取りページを開いた人の43%</small></div>
+  </div>
+</section>
+<section class="ad sec-m">
+  <div class="sec-head"><h2>2. 日別</h2><div class="sub">2つのキャンペーンの合計。CTR＝リンククリック÷表示、登録率＝LINE登録÷リンククリック</div></div>
+  <div class="tbl"><table style="min-width:1100px">
+    <thead><tr><th style="text-align:left">日付</th><th>消化</th><th>表示</th><th>クリック</th><th>CTR</th><th>CPM</th><th>CPC</th><th>LINE登録</th><th>登録率</th><th>リスト単価</th><th>受け取りページ</th><th>申込ボタンの位置まで</th><th>セールスレター</th><th style="text-align:left">あったこと</th></tr></thead>
+    <tbody>
+<tr><th>10/12</th><td>¥8,307</td><td>3,077</td><td>85</td><td>2.8%</td><td>¥2,700</td><td>¥98</td><td>2</td><td>2.4%</td><td>¥4,154</td><td>3</td><td>0</td><td>0</td><td style="text-align:left;white-space:normal;font-family:var(--f-body);min-width:220px">配信開始 21:14。広告セット2つ（既存LP・UTAGE型LP）</td></tr>
+<tr><th>10/13</th><td>¥51,236</td><td>11,916</td><td>911</td><td>7.6%</td><td>¥4,300</td><td>¥56</td><td>27</td><td>3.0%</td><td>¥1,898</td><td>21</td><td>13</td><td>7</td><td style="text-align:left;white-space:normal;font-family:var(--f-body);min-width:220px">11時台に既存LPのリンク先をUTAGE型LPへ</td></tr>
+<tr><th>10/14</th><td>¥50,110</td><td>19,988</td><td>2,078</td><td>10.4%</td><td>¥2,507</td><td>¥24</td><td>26</td><td>1.3%</td><td>¥1,927</td><td>41</td><td>16</td><td>4</td><td style="text-align:left;white-space:normal;font-family:var(--f-body);min-width:220px">9時に配信先からオーディエンスネットワークを外した</td></tr>
+<tr><th>10/15</th><td>¥58,760</td><td>9,527</td><td>189</td><td>2.0%</td><td>¥6,168</td><td>¥311</td><td>16</td><td>8.5%</td><td>¥3,673</td><td>22</td><td>9</td><td>3</td><td style="text-align:left;white-space:normal;font-family:var(--f-body);min-width:220px">新キャンペーン「5万円一本化」に切り替え（以前の2つはオフ）</td></tr>
+<tr><th>10/16</th><td>¥40,585</td><td>6,781</td><td>130</td><td>1.9%</td><td>¥5,985</td><td>¥312</td><td>10</td><td>7.7%</td><td>¥4,059</td><td>22</td><td>9</td><td>2</td><td style="text-align:left;white-space:normal;font-family:var(--f-body);min-width:220px">5万円一本化のみ</td></tr>
+<tr><th>10/17</th><td>¥14,319</td><td>2,696</td><td>54</td><td>2.0%</td><td>¥5,311</td><td>¥265</td><td>2</td><td>3.7%</td><td>¥7,160</td><td>15</td><td>6</td><td>1</td><td style="text-align:left;white-space:normal;font-family:var(--f-body);min-width:220px">広告を停止</td></tr>
+<tr class="total"><th>合計</th><td>¥223,317</td><td>53,985</td><td>3,447</td><td>6.4%</td><td>¥4,137</td><td>¥65</td><td>83</td><td>2.4%</td><td>¥2,691</td><td>124</td><td>53</td><td>17</td><td></td></tr>
+    </tbody></table></div>
+  <p class="note">「受け取りページ」「申込ボタンの位置まで」「セールスレター」はUTAGEの数字（その日のアクセスUU）です。前の日までに登録した人が見た分も入るので、LINE登録の数より多い日があります。スプレッドシートには、このほかに購入の記録（10/13と10/16にフロントエンド各1件、10/15にバックエンド1件）があります。</p>
+</section>
+<section class="ad sec-m">
+  <div class="sec-head"><h2>3. キャンペーン別</h2><div class="sub">スプレッドシートの「キャンペーン別リスト単価」タブから</div></div>
+  <div class="tbl"><table style="min-width:760px">
+    <thead><tr><th style="text-align:left">キャンペーン</th><th style="text-align:left">期間</th><th>消化</th><th>LINE登録（Meta）</th><th>リスト単価（Meta）</th><th>実登録（UTAGE）</th><th>リスト単価（実登録）</th></tr></thead>
+    <tbody>
+    <tr><th>以前のキャンペーン（2.5万円×広告セット2つ）</th><th>10/12〜10/15</th><td>¥135,784</td><td>61</td><td>¥2,226</td><td>64.8</td><td>¥2,097</td></tr>
+    <tr><th>5万円一本化（広告セット1つ）</th><th>10/15〜10/17</th><td>¥87,533</td><td>22</td><td>¥3,979</td><td>25.3</td><td>¥3,467</td></tr>
+    <tr class="total"><th>合計</th><th>10/12〜10/17</th><td>¥223,317</td><td>83</td><td>¥2,691</td><td>90.0</td><td>¥2,481</td></tr>
+    </tbody></table></div>
+  <p class="note">10/15は2つのキャンペーンが両方動いていたため、10/15の実登録18人を、その日のMetaの登録の比（以前6件、5万円一本化10件）で分けています（推定）。そのため実登録の数に小数があります。</p>
+</section>
+<section class="ad sec-m">
+  <div class="sec-head"><h2>4. 数字から言えること</h2></div>
+  <ol style="margin:0;padding-left:1.4em;display:grid;gap:8px;max-width:72ch">
+    <li>リスト単価がいちばん良かったのは、日予算¥25,000の広告セット2つで出していた期間（¥2,226）です。日予算¥50,000の広告セット1つにまとめた期間は¥3,979で、約1.8倍になりました。</li>
+    <li>10/14にオーディエンスネットワークを外したあと、表示1,000回あたりの費用（CPM）は¥2,507（10/14）から¥5,000〜6,000台に上がり、クリック率は10.4%から2%前後に下がりました。一方で、クリックから登録までの割合は1.3%（10/14）から7〜8%台（10/15・10/16）に上がっています。安く大量に出ていた表示が減り、登録しそうな人に絞られた可能性があります。ただし10/15にキャンペーンも切り替えているので、どちらの影響かは分けられません。</li>
+    <li>MetaのLINE登録（83件）より、UTAGEに実際に入った人数（90人）の方が多いです。実登録で割ると、リスト単価は少し下がります（¥2,691 → ¥2,481）。</li>
+    <li>受け取りページを開いた人の約4割（124人中53人）が、動画の申込ボタンが出る位置まで見ています。セールスレターまで進んだのは17人でした。</li>
+  </ol>
+</section>
+<section class="ad sec-m">
+  <div class="sec-head"><h2>5. その後</h2></div>
+  <ol style="margin:0;padding-left:1.4em;display:grid;gap:8px;max-width:72ch">
+    <li>10/17に広告を止めて、LINEステップ（3日間版）と受け取りページ（申込ボタンの代わりにセールスレターを表示）を作り直しました。</li>
+    <li>10/29 21:40に、リスト単価がいちばん良かった以前のキャンペーンの中で、画像5枚をテストする広告セット（日予算¥50,000・リンク先 UTAGE型LP）を作って配信を再開しました。</li>
+  </ol>
+  <p><a href="2026-10-13.html" style="color:var(--meta);font-weight:700">← 10/13の変化点レポートを読む</a></p>
+</section>
+<footer style="margin-top:36px;font-size:12px;color:var(--muted)">検索エンジンには表示されない設定です。リンクを知っている人だけが見られます。</footer>
+</div>
+</body>
+</html>

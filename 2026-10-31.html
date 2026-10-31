@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>AN検証と画像テストの結論</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#f5f6f3; --paper:#ffffff; --ink:#1d2320; --muted:#5e6862; --line:#d9ddd6;
+  --meta:#3b5bab; --meta-soft:#e3e9f7;
+  --good:#2f7d4f; --good-soft:#e2f1e7; --bad:#b4332b; --bad-soft:#f7e3e1; --warn:#9a6a00;
+  --f-display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,"SFMono-Regular",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141816; --paper:#1c211f; --ink:#e6ebe7; --muted:#9aa49e; --line:#333b37;
+  --meta:#8ea6e6; --meta-soft:#232c42;
+  --good:#6cc28f; --good-soft:#1e3427; --bad:#ef7d74; --bad-soft:#3a2321; --warn:#e0b44a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141816; --paper:#1c211f; --ink:#e6ebe7; --muted:#9aa49e; --line:#333b37;
+  --meta:#8ea6e6; --meta-soft:#232c42;
+  --good:#6cc28f; --good-soft:#1e3427; --bad:#ef7d74; --bad-soft:#3a2321; --warn:#e0b44a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.75;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:28px 64px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.35;margin:0}
+h1{font-size:clamp(24px,3.4vw,34px);font-weight:800}
+h2{font-size:clamp(20px,2.6vw,26px);font-weight:800}
+h3{font-size:17px;font-weight:600}
+p{margin:0;max-width:70ch}
+td,.tile b{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+header.top{display:grid;gap:10px;padding-bottom:20px;border-bottom:2px solid var(--ink)}
+.meta-line{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--muted);font-size:13px}
+.lead{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:22px}
+.lead > div{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px 18px;min-width:0}
+.lead .lab{font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.lead p{margin-top:6px}
+.lesson{margin-top:16px;border:2px solid var(--ink);border-radius:6px;padding:18px 20px;background:var(--paper);display:grid;gap:8px}
+.lesson .lab{font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.lesson .big{font-family:var(--f-display);font-size:clamp(19px,2.4vw,23px);font-weight:800}
+section.ad{margin-top:48px;display:grid;gap:18px}
+.sec-head{display:grid;gap:6px;padding-left:14px;border-left:6px solid var(--meta)}
+.sec-head .sub{color:var(--muted);font-size:13px}
+.tbl{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:640px}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+thead th{font-family:var(--f-body);font-size:12px;color:var(--muted);font-weight:700;background:var(--bg)}
+tbody th{text-align:left;font-weight:500}
+td.txt{text-align:left;white-space:normal;font-family:var(--f-body);min-width:220px}
+tr.an td,tr.an th{background:var(--bad-soft)}
+tr.win td,tr.win th{background:var(--good-soft)}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;font-family:var(--f-body)}
+.chip.ok{color:var(--good);border:1px solid var(--good)}
+.chip.ng{color:var(--bad);border:1px solid var(--bad)}
+.chip.wait{color:var(--warn);border:1px dashed var(--warn)}
+.timeline{display:grid;gap:0;background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tl{display:grid;grid-template-columns:140px 1fr;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.tl:last-child{border-bottom:none}
+.tl .when{font-family:var(--f-num);font-size:13px;color:var(--muted)}
+.tl.key{background:var(--meta-soft)}
+@media (max-width:560px){.tl{grid-template-columns:1fr;gap:2px}}
+ol.pts{margin:0;padding-left:1.4em;display:grid;gap:10px;max-width:74ch}
+.quote{background:var(--paper);border-left:4px solid var(--muted);padding:10px 14px;border-radius:0 6px 6px 0;font-size:14px}
+.quote .who{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.note{font-size:12.5px;color:var(--muted)}
+footer{margin-top:40px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+a{color:var(--meta)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p style="margin:0 0 14px"><a href="./" style="font-size:13px">← レポート一覧に戻る</a></p>
+<header class="top">
+  <div class="meta-line"><span>2026年10月31日（土）作成</span><span>報告 加藤朋香</span><span>数値は広告マネージャ（10/31 17〜18時に確認）と、山口さんの配置別まとめ（10/10〜10/30）</span></div>
+  <h1>セミリタイア CV最大化　オーディエンスネットワークの検証と、画像テストの結論</h1>
+  <p>10/10に作った広告セット2つ（既存LP・UTAGE型LP）は、なぜ一番良かったのか。オーディエンスネットワーク（以下AN）を外したあと、なぜ崩れたのか。10/29からの画像テストで何を残し、何を棄却したのか。この3つをまとめました。LINE登録はMetaの「登録完了」の数です。</p>
+</header>
+
+<div class="lead">
+  <div>
+    <div class="lab">ANの正体</div>
+    <p>10/10の2セットのCPC 34〜60円の安さは、ANのクリックでした（クリックの74〜89%がAN）。ANを除くとCPCは224〜245円で、ほかのセットと大きく変わりません。</p>
+  </div>
+  <div>
+    <div class="lab">それでも残った差</div>
+    <p>ANを除いても、登録単価は10/10の2セットが¥1,970〜2,263で一番良い結果でした。見せかけを取り除いても残った差なので、本物の差と見ています。</p>
+  </div>
+  <div>
+    <div class="lab">画像テスト</div>
+    <p>採用は「05 貧乏発信者」だけです。前の画像テスト（10/24〜）でも9件、今回も4件と、2回続けて一番登録を取りました。ほかの4枚は棄却しました。</p>
+  </div>
+</div>
+<div class="lesson">
+  <div class="lab">この検証からの教訓</div>
+  <div class="big">うまくいっている時は、設定を動かさない。</div>
+  <p>ANを入れるか入れないかより、こちらの方が大切だと考えています。10/14にANを外した翌日、一番良かった2セットがそろって崩れました。ANが原因だったとしても、同じ時期に動かしたほかのことが原因だったとしても、この教訓は変わりません。</p>
+</div>
+
+<section class="ad">
+  <div class="sec-head"><h2>1. 何をいつ動かしたか</h2><div class="sub">グループLINEの記録から</div></div>
+  <div class="timeline">
+    <div class="tl"><div class="when">10/12 21:14</div><div>10/10作成の広告セット2つ（既存LP・UTAGE型LP、白地の画像1枚、日予算¥25,000ずつ）で配信開始。配置はAdvantage+配置（ANを含む）</div></div>
+    <div class="tl key"><div class="when">10/14 14:01</div><div>2つの広告セットから<b>ANを除外</b>して公開（除外先へ限定的に予算を使う設定もオフ）</div></div>
+    <div class="tl key"><div class="when">10/15 12:18</div><div>2つの広告セットを<b>停止</b>し、新しいキャンペーン「5万円一本化」（広告セット1つ、ANなし）で配信開始</div></div>
+    <div class="tl"><div class="when">10/17 9:00</div><div>5万円一本化を停止（広告費が約2倍に膨れたため）</div></div>
+    <div class="tl"><div class="when">10/29 21:40</div><div>画像5枚を1つの広告セットに入れた画像テスト（日予算¥50,000、ANなし）で再開</div></div>
+    <div class="tl"><div class="when">10/30 17:00</div><div>画像ごとに広告セットを分けた画像テスト5本（ANなし）を開始</div></div>
+    <div class="tl key"><div class="when">10/31 16:54</div><div>画像テストは05だけ残して4本を停止。10/10の2つの広告セットを<b>再開</b></div></div>
+    <div class="tl"><div class="when">10/31 17:52</div><div>05の日予算を2倍に</div></div>
+  </div>
+</section>
+
+<section class="ad">
+  <div class="sec-head"><h2>2. ANの正体</h2><div class="sub">10/10の2セットの配置別（10/10〜10/31、広告マネージャ）</div></div>
+  <div class="tbl"><table>
+    <thead><tr><th style="text-align:left">広告セット</th><th style="text-align:left">配置</th><th>消化</th><th>表示</th><th>CPM</th><th>リンククリック</th><th>登録</th></tr></thead>
+    <tbody>
+      <tr><th>UTAGE型LP</th><th>Instagram</th><td>¥48,781</td><td>8,352</td><td>¥5,841</td><td>259</td><td>31</td></tr>
+      <tr><th>UTAGE型LP</th><th>Facebook</th><td>¥14,912</td><td>1,643</td><td>¥9,076</td><td>22</td><td>1</td></tr>
+      <tr class="an"><th>UTAGE型LP</th><th>AN</th><td>¥2,512</td><td>5,816</td><td>¥432</td><td>805</td><td>0</td></tr>
+      <tr><th>既存LP</th><th>Instagram</th><td>¥44,900</td><td>5,931</td><td>¥7,570</td><td>203</td><td>21</td></tr>
+      <tr><th>既存LP</th><th>Facebook</th><td>¥12,133</td><td>1,239</td><td>¥9,793</td><td>28</td><td>4</td></tr>
+      <tr class="an"><th>既存LP</th><th>AN</th><td>¥13,797</td><td>16,257</td><td>¥849</td><td>1,854</td><td>4</td></tr>
+    </tbody></table></div>
+  <div class="tbl"><table style="min-width:560px">
+    <thead><tr><th style="text-align:left">広告セット</th><th>全体のCPC</th><th>クリックのうちAN</th><th>ANを除いたCPC</th><th>登録単価</th><th>ANを除いた登録単価</th></tr></thead>
+    <tbody>
+      <tr><th>既存LP</th><td>¥34</td><td>89%</td><td>¥245</td><td>¥2,423</td><td>¥2,263</td></tr>
+      <tr><th>UTAGE型LP</th><td>¥60</td><td>74%</td><td>¥224</td><td>¥2,047</td><td>¥1,970</td></tr>
+    </tbody></table></div>
+  <ol class="pts">
+    <li>ANは1クリック数十円で、クリックが大量に取れます。ただ、2セット合わせて約2,660クリックで登録は4件でした。誤タップが多く、登録にはほとんどつながっていません。</li>
+    <li>CPCは「使ったお金÷クリック数」の平均です。ANの安いクリックが混ざると、平均が大きく下がります。CPCが安く見えていたのは、このためです。</li>
+    <li>登録の大半はInstagramで取れています（UTAGE型LP 31件、既存LP 21件）。</li>
+    <li>ANにかかったのは、2セットの消化のうち約12%（¥16,174／¥135,784）でした。</li>
+  </ol>
+  <p class="note">上の表は朋香が10/31に広告マネージャで読んだ数字（10/10〜10/31）、下の表は山口さんのまとめ（10/10〜10/30）です。</p>
+</section>
+
+<section class="ad">
+  <div class="sec-head"><h2>3. ANを外した翌日に崩れた</h2><div class="sub">日別（山口さんのまとめから）</div></div>
+  <div class="tbl"><table style="min-width:720px">
+    <thead><tr><th style="text-align:left">日付</th><th style="text-align:left">広告セット</th><th>登録</th><th>登録単価</th><th>CPC</th><th>CTR</th><th>CPM</th><th style="text-align:left">AN</th></tr></thead>
+    <tbody>
+      <tr><th>10/14</th><th>既存LP</th><td>14件</td><td>¥1,940</td><td>¥19</td><td>11.78%</td><td>¥2,223</td><td class="txt" style="min-width:0">あり（14時まで）</td></tr>
+      <tr><th>10/14</th><th>UTAGE型LP</th><td>12件</td><td>¥1,912</td><td>¥36</td><td>8.21%</td><td>¥2,955</td><td class="txt" style="min-width:0">あり（14時まで）</td></tr>
+      <tr><th>10/15</th><th>既存LP</th><td>2件</td><td>¥7,604</td><td>¥234</td><td>2.89%</td><td>¥6,762</td><td class="txt" style="min-width:0">なし</td></tr>
+      <tr><th>10/15</th><th>UTAGE型LP</th><td>4件</td><td>¥2,731</td><td>¥341</td><td>1.70%</td><td>¥5,810</td><td class="txt" style="min-width:0">なし</td></tr>
+      <tr><th>10/15</th><th>5万円一本化</th><td>10件</td><td>¥3,263</td><td>¥355</td><td>1.70%</td><td>¥6,045</td><td class="txt" style="min-width:0">なし（初日）</td></tr>
+    </tbody></table></div>
+  <ol class="pts">
+    <li>ANを外した翌日（10/15）、10/10の2セットはそろって登録単価が上がりました（¥1,9xx → ¥7,604・¥2,731）。</li>
+    <li>10/15の2セットの数字は、0時から停止した12:18までの分です。5万円一本化が始まる前なので、この2セットの悪化は一本化のせいではありません。一本化は新しい広告セットで、ゼロから学習を始めていました。</li>
+    <li>CPCが¥19〜36から¥234〜341に上がったのは、半分は見かけの変化です。安いANのクリックが平均から抜けたためです。実際に悪くなったと言えるのは登録単価の方です。</li>
+    <li>ただし、10/15の2セットは半日分で、登録も2件と4件しかありません。1件違うだけで登録単価は大きく変わります（既存LPは3件なら約¥5,070）。時間帯の違い（夜〜昼）もあります。</li>
+  </ol>
+  <div class="quote">「＞また、2.5万円から5万円への増額で、残す側も再学習に入る可能性があります。これが一番怖いんですよね。」<span class="who">山口さん（10/15 0:28 グループLINE）</span></div>
+  <p>予算の増額では、再学習を避けるために別立て（5万円一本化）を選んでいました。ところが、その前日にANを外したことも、うまくいっていた広告セットの設定を動かすことでした。ANを外したことで学習がやり直しになり、崩れたと考えています（半日分・少ない件数なので、数字だけで断定はできません）。</p>
+</section>
+
+<section class="ad">
+  <div class="sec-head"><h2>4. 学習のやり直し</h2><div class="sub">画像テストのCPMが高かった理由と、10/31の再開</div></div>
+  <ol class="pts">
+    <li>画像テストのCPMは¥8,768〜17,275で、10/10の2セット（Instagramで¥5,841〜7,570）の2倍以上でした。同じ白地の画像でも、新しいセットでは¥8,768です。画像そのものより、11日間止めたあとに新しいセットで始めたこと（学習がゼロから）が効いている可能性が高いと見ています。</li>
+    <li>外部の解説では、広告セットを7日以上止めてから再開すると、学習がやり直しになるとされています。</li>
+    <li>10/10の2セットは10/15に止めて、10/31に再開しました。16日止めていたので、再開した2セットもしばらくは学習のやり直し中と見ます。10/31は17時台までで、それぞれ約¥2,600を使い、登録はUTAGE型LP 1件、既存LP 0件です。ANへの配信は、10/15以降と10/31の再開後は0円でした。</li>
+  </ol>
+  <p class="note">配置を変えることが学習のやり直しに当たるかは、確認できた資料には書かれていませんでした。参考：<a href="https://admanage.ai/blog/facebook-ads-learning-phase-guide" target="_blank" rel="noopener">Facebook Ads Learning Phase Guide（AdManage.ai）</a></p>
+</section>
+
+<section class="ad">
+  <div class="sec-head"><h2>5. 画像テストの結論</h2><div class="sub">どのセットもANへの配信はゼロ。判断はCPCではなく登録単価で</div></div>
+  <div class="tbl"><table style="min-width:720px">
+    <thead><tr><th style="text-align:left">広告セット・画像</th><th>CPC</th><th>CPM</th><th>登録</th><th>登録単価</th><th style="text-align:left">結論</th></tr></thead>
+    <tbody>
+      <tr class="win"><th>画像テスト 05 貧乏発信者</th><td>¥617</td><td>¥16,038</td><td>4件</td><td>¥1,387</td><td class="txt" style="min-width:0"><span class="chip ok">採用</span></td></tr>
+      <tr><th>画像テスト 白地03</th><td>¥265</td><td>¥8,768</td><td>0件</td><td>ー</td><td class="txt" style="min-width:0"><span class="chip ng">棄却</span></td></tr>
+      <tr><th>画像テスト 02 投稿が終わらない夜</th><td>¥613</td><td>¥10,929</td><td>0件</td><td>ー</td><td class="txt" style="min-width:0"><span class="chip ng">棄却</span></td></tr>
+      <tr><th>画像テスト 01 手元</th><td>¥942</td><td>¥17,275</td><td>1件</td><td>¥5,649</td><td class="txt" style="min-width:0"><span class="chip ng">棄却</span></td></tr>
+      <tr><th>画像テスト 04 毎日手動投稿</th><td>¥1,707</td><td>¥12,397</td><td>0件</td><td>ー</td><td class="txt" style="min-width:0"><span class="chip ng">棄却</span></td></tr>
+      <tr><th>画像テスト5枚（1セット・日予算5万）</th><td>¥518</td><td>¥14,406</td><td>11件</td><td>¥4,095</td><td class="txt" style="min-width:0"><span class="chip ng">棄却</span></td></tr>
+      <tr><th>5万円一本化</th><td>¥317</td><td>¥5,885</td><td>22件</td><td>¥3,979</td><td class="txt" style="min-width:0"><span class="chip ng">棄却</span></td></tr>
+    </tbody></table></div>
+  <p class="note">山口さんのまとめ（10/10〜10/30）の数字です。</p>
+
+  <h3>05は2回続けて勝った</h3>
+  <div class="tbl"><table style="min-width:560px">
+    <thead><tr><th style="text-align:left">前の画像テスト（10/24〜、5枚を1セット）</th><th>消化</th><th>登録</th><th>登録単価</th></tr></thead>
+    <tbody>
+      <tr class="win"><th>05 貧乏発信者</th><td>¥21,490</td><td>9</td><td>¥2,388</td></tr>
+      <tr><th>04 毎日手動投稿</th><td>¥6,954</td><td>2</td><td>¥3,477</td></tr>
+      <tr><th>03 スマホ正方形</th><td>¥15,622</td><td>1</td><td>¥15,622</td></tr>
+      <tr><th>01 手元</th><td>¥851</td><td>0</td><td>ー</td></tr>
+      <tr><th>02 投稿が終わらない夜</th><td>¥131</td><td>0</td><td>ー</td></tr>
+    </tbody></table></div>
+  <ol class="pts">
+    <li>05は、前の画像テストでも今回でも一番登録を取りました。前と今回を合わせると約¥33,000で14件、登録単価は約¥2,360です。CPMは高いのに、LPに来た人の登録率が高いので、登録単価が下がっています。</li>
+    <li>白地03はクリックが一番安く、Instagramストーリーズ（CPC¥192）やリール（CPC¥148）のように200円を切る枠もありました。ただ、LPでの登録が0件です。広告はまともでも、LPとの相性が悪いと見ています。ストーリーズとリールはクリックが12件と3件しかないので、まだ判断はできません。</li>
+    <li>02と04は、クリックも登録も取れていません。01はCPMが一番高く、登録単価も¥5,649でした。</li>
+    <li>今回の05は10/31の分を入れると5件・約¥2,227です。登録の件数がまだ少ないので、上限¥2,816を下回っているかを見続けます。</li>
+  </ol>
+</section>
+
+<section class="ad">
+  <div class="sec-head"><h2>6. これから</h2></div>
+  <ol class="pts">
+    <li>判断はCPCではなく、登録単価で行います（目安：¥2,000以下、上限¥2,816）。</li>
+    <li>うまくいっている広告セットは、予算・配置・画像・文章を動かしません。変えたいときは、別の広告セットを立てて比べます。</li>
+    <li>11/1：再開した10/10の2セットの配置別を見て、ANへの配信が戻っているかを確認します。戻っていれば、そのまま回して11/3に登録単価で判定します。戻っていなければ、アクティビティ履歴と配置の設定を確認します。外れていたら、既存LPだけANを入れ直して、もう片方と比べます。</li>
+    <li>再開した2セットは16日止めていたので、学習のやり直し中として見ます。</li>
+    <li>ANから来た登録は、UTAGEに実際に入った人数と照らし合わせます。Metaの数字だけ良くて、実際の登録がいないパターンを避けるためです。</li>
+    <li>05は日予算を2倍にしました。日予算¥100,000を使い切れるかを見ていきます。</li>
+  </ol>
+  <p><a href="2026-10-17.html" style="font-weight:700">← 10/12〜10/17のまとめを読む</a></p>
+</section>
+<footer>検索エンジンには表示されない設定です。リンクを知っている人だけが見られます。</footer>
+</div>
+</body>
+</html>
